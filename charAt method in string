@@ -1,0 +1,14 @@
+import javax.swing.event.SwingPropertyChangeSupport;
+
+public class charAt {
+    public static void main(String[] args) {
+        
+    
+    String FirstName = "Jasmine";
+    String LastName = "Yadav";
+    String FullName = FirstName + " " + LastName ;
+    System.out.println ( FullName.charAt(0));
+    }
+
+    
+}
