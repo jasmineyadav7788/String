@@ -1,0 +1,8 @@
+import java.util.*;
+public class StringLength {
+    public static void main(String[] args) {
+        String fullName = "Tony stark";
+        System.out.println(fullName.length());
+    }
+    
+}
