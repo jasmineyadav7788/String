@@ -1,0 +1,48 @@
+import java.util.Arrays;
+
+class Solution {
+    public String sortVowels(String s) {
+        // Separate vowels and consonants
+        StringBuilder vowels = new StringBuilder();
+        StringBuilder consonants = new StringBuilder();
+        for (char ch : s.toCharArray()) {
+            if (isVowel(ch)) {
+                vowels.append(ch);
+            } else {
+                consonants.append(ch);
+            }
+        }
+
+        // Sort the vowels
+        char[] sortedVowels = vowels.toString().toCharArray();
+        Arrays.sort(sortedVowels);
+        StringBuilder sortedVowelsStr = new StringBuilder(new String(sortedVowels));
+
+        // Merge the sorted vowels and original consonants
+        StringBuilder t = new StringBuilder();
+        int vowelIdx = 0;
+        int consonantIdx = 0;
+        for (char ch : s.toCharArray()) {
+            if (isVowel(ch)) {
+                t.append(sortedVowelsStr.charAt(vowelIdx));
+                vowelIdx++;
+            } else {
+                t.append(consonants.charAt(consonantIdx));
+                consonantIdx++;
+            }
+        }
+
+        return t.toString();
+    }
+
+    // Helper function to check if a character is a vowel
+    private boolean isVowel(char ch) {
+        return "aeiouAEIOU".indexOf(ch) != -1;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        System.out.println(solution.sortVowels("lEetcOde"));  // Output: "lEOtcede"
+        System.out.println(solution.sortVowels("lYmpH"));     // Output: "lYmpH"
+    }
+}
