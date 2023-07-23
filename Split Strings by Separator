@@ -1,0 +1,41 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Solution {
+    public List<String> splitWordsBySeparator(List<String> words, char separator) {
+        List<String> result = new ArrayList<>();
+        for (String word : words) {
+            // Split the word using the separator and add non-empty substrings to the result list
+            int startIndex = 0;
+            for (int i = 0; i < word.length(); i++) {
+                if (word.charAt(i) == separator) {
+                    if (startIndex != i) {
+                        result.add(word.substring(startIndex, i));
+                    }
+                    startIndex = i + 1;
+                }
+            }
+            if (startIndex != word.length()) {
+                result.add(word.substring(startIndex));
+            }
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+
+        // Test cases
+        List<String> words1 = List.of("one.two.three", "four.five", "six");
+        char separator1 = '.';
+        System.out.println(solution.splitWordsBySeparator(words1, separator1)); // Output: ["one", "two", "three", "four", "five", "six"]
+
+        List<String> words2 = List.of("$easy$", "$problem$");
+        char separator2 = '$';
+        System.out.println(solution.splitWordsBySeparator(words2, separator2)); // Output: ["easy", "problem"]
+
+        List<String> words3 = List.of("|||");
+        char separator3 = '|';
+        System.out.println(solution.splitWordsBySeparator(words3, separator3)); // Output: []
+    }
+}
